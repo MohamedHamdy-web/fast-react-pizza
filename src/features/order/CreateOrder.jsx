@@ -80,21 +80,22 @@ function CreateOrder() {
                 {errorAddress}
               </p>
             )}
+
+            {!position.latitude && !position.longitude && (
+              <span className="absolute right-[3px] z-50 md:right-[5px] md:top-[5px]">
+                <Button
+                  disabled={isLoadingAddress}
+                  type="small"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(fetchAddress());
+                  }}
+                >
+                  Get position
+                </Button>
+              </span>
+            )}
           </div>
-          {!position.latitude && !position.longitude && (
-            <span className="absolute right-[3px] top-auto z-50 md:right-[5px] md:top-[5px]">
-              <Button
-                disabled={isLoadingAddress}
-                type="small"
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(fetchAddress());
-                }}
-              >
-                Get position
-              </Button>
-            </span>
-          )}
         </div>
 
         <div className="mb-12 flex items-center gap-5">
